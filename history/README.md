@@ -7,7 +7,9 @@
 在新目录恢复历史：
 
 ```bash
-git clone -b refs/remotes/origin/main history/cifar10-CNN.bundle cnn-original
+git init cnn-original
+git -C cnn-original fetch ../history/cifar10-CNN.bundle refs/remotes/origin/main:refs/heads/main
+git -C cnn-original switch main
 ```
 
 本仓库的主题目录由该版本的 CNN 项目与后续学习产出整理而成。
