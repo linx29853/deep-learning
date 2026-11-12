@@ -1,0 +1,10 @@
+{
+  "epochs": 10,
+  "batch_size": 64,
+  "lr": 0.001,
+  "download": false,
+  "check": false,
+  "augmentation": "hflip",
+  "seed": 42,
+  "run_name": "hflip-10ep"
+}
