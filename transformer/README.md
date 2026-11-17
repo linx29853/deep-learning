@@ -22,6 +22,32 @@ python transformer/minimal_transformer.py
 python transformer/minimal_transformer.py --device cuda
 ```
 
+## Docker（CPU）
+
+在仓库根目录构建镜像：
+
+```bash
+docker build -t minimal-transformer:cpu ./transformer
+# 快速检查训练、评估和权重保存流程
+docker run --rm minimal-transformer:cpu --steps 2
+```
+
+镜像使用 Python 3.11、CPU 版 PyTorch 2.7.1 和 torchvision 0.22.1，与 CNN 共用相同的依赖层。完整训练执行 1500 步，挂载目录用于保留模型权重：
+
+```bash
+docker run --rm \
+  --user "$(id -u):$(id -g)" \
+  --mount type=bind,source="$(pwd)/transformer",target=/app \
+  minimal-transformer:cpu
+```
+
+权重保存至宿主机 `transformer/minimal_transformer.pt`。容器中的 Encoder、Decoder 示例可单独执行：
+
+```bash
+docker run --rm --entrypoint python minimal-transformer:cpu encoder.py
+docker run --rm --entrypoint python minimal-transformer:cpu decoder.py
+```
+
 ## 结构与任务
 
 单层 Encoder、单层 Decoder，特征维度 32，4 个注意力头，FFN 隐藏维度 64，共 22,444 个参数。数字编号 0～9，BOS=10，EOS=11。输入固定为四位数字，输出为倒序数字加结束符。

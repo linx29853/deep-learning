@@ -55,7 +55,16 @@ python transformer/decoder.py
 python transformer/minimal_transformer.py
 ```
 
-CNN 的 Docker 环境和 CIFAR-10 完整训练命令见主题 README。数据集缓存、模型权重及运行时实验目录由 .gitignore 排除；固定结果记录、配图与 GIF 随代码保存。
+CNN 和 Transformer 均提供 CPU Docker 环境。在仓库根目录构建并快速检查：
+
+```bash
+docker build -t cifar10-cnn:cpu ./cnn
+docker run --rm cifar10-cnn:cpu --check
+docker build -t minimal-transformer:cpu ./transformer
+docker run --rm minimal-transformer:cpu --steps 2
+```
+
+完整训练和模型持久化命令见各主题 README。数据集缓存、模型权重及运行时实验目录由 .gitignore 排除；固定结果记录、配图与 GIF 随代码保存。
 
 ## 实际运行记录
 
