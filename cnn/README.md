@@ -21,7 +21,7 @@ python train.py --download --epochs 5
 
 ## Docker（CPU）
 
-在仓库根目录构建镜像并检查网络接口：
+在 `cnn/` 目录构建镜像并检查网络接口：
 
 ```bash
 docker build -t cifar10-cnn:cpu .
