@@ -1,0 +1,6 @@
+*
+!Dockerfile
+!requirements.txt
+!encoder.py
+!decoder.py
+!minimal_transformer.py
